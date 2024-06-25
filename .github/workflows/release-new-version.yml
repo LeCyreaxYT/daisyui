@@ -59,10 +59,10 @@ jobs:
         run: ${{ env.runtime }} run build
 
       - name: Run release command
-        if: github.repository == 'saadeghi/daisyui'
+        if: github.repository == 'LeCyreaxYT/daisyui'
         run: |
-          git config --local user.email "pouya.saadeghi@gmail.com"
-          git config --local user.name "Pouya Saadeghi"
+          git config --local user.email "alecschitzkat@icloud.com"
+          git config --local user.name "Alec S."
           ${{ env.runtime }} run release${{ inputs.release-type }}
 
       - name: Read package version from package.json
@@ -72,12 +72,12 @@ jobs:
           echo version=$version >> $GITHUB_OUTPUT
 
       - name: Update package version in src/docs/.env and commit
-        if: github.repository == 'saadeghi/daisyui'
+        if: github.repository == 'LeCyreaxYT/daisyui'
         id: commit
         run: |
           echo "VITE_DAISYUI_VERSION=${{ steps.package-version.outputs.version }}" > src/docs/.env
-          git config --local user.email "pouya.saadeghi@gmail.com"
-          git config --local user.name "Pouya Saadeghi"
+          git config --local user.email "alecschitzkat@icloud.com"
+          git config --local user.name "Alec S."
           git add --all
           if [ -z "$(git status --porcelain)" ]; then
             echo push=false >> $GITHUB_OUTPUT
@@ -101,18 +101,10 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Publish package to NPM
-        if: github.repository == 'saadeghi/daisyui'
+        if: github.repository == 'LeCyreaxYT/daisyui'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-  deploy-docs:
-    name: 📘 Docs
-    needs: build-publish
-    uses: ./.github/workflows/deploy-docs.yml
-    secrets: inherit
-    with:
-      daisyuiversion: ${{ needs.build-publish.outputs.daisyuiversion }}
 
   run-tests:
     name: 🧪 Tests
@@ -124,7 +116,7 @@ jobs:
 
   write-release-notes:
     name: 📝 Release notes
-    if: github.repository == 'saadeghi/daisyui'
+    if: github.repository == 'LeCyreaxYT/daisyui'
     needs: build-publish
     uses: ./.github/workflows/write-release-notes.yml
     secrets: inherit

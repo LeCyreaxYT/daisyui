@@ -117,7 +117,7 @@ const mainFunction = ({ addBase, addComponents, config }) => {
         daisyuiInfo.funding.url
       )}`,
       `${pc.green("★")} ${pc.reset("Star daisyUI on GitHub")}\t${pc.dim(
-        "https://github.com/saadeghi/daisyui"
+        "https://github.com/LeCyreaxYT/daisyui.git"
       )}`,
     ]
     console.log(`╰─ ${messages[Math.floor(Math.random() * messages.length)]}`)
