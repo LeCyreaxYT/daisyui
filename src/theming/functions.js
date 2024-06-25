@@ -2,7 +2,7 @@ const pc = require("picocolors")
 const colorNames = require("./colorNames")
 const themeDefaults = require("./themeDefaults")
 
-const { oklch, interpolate, wcagContrast } = require("culori/require")
+const { lch, interpolate, wcagContrast } = require("culori/require")
 
 const colorIsInvalid = (input) => {
   console.error(
@@ -44,7 +44,7 @@ module.exports = {
     try {
       const result = interpolate(
         [input, this.isDark(input) ? "white" : "black"],
-        "oklch"
+        "lch"
       )(percentage)
       return this.colorObjToString(result)
     } catch (e) {
@@ -55,7 +55,7 @@ module.exports = {
 
   generateDarkenColorFrom: function (input, percentage = 0.07) {
     try {
-      const result = interpolate([input, "black"], "oklch")(percentage)
+      const result = interpolate([input, "black"], "lch")(percentage)
       return this.colorObjToString(result)
     } catch (e) {
       // colorIsInvalid(input)
@@ -73,7 +73,7 @@ module.exports = {
     for (const [rule, value] of Object.entries(input)) {
       if (Object.hasOwn(colorNames, rule)) {
         try {
-          const colorObj = oklch(value)
+          const colorObj = lch(value)
           resultObj[colorNames[rule]] = this.colorObjToString(colorObj)
         } catch (e) {
           colorIsInvalid(value)

@@ -26,11 +26,11 @@ npm i -D daisyui@latest
 
 ## 2. daisyUI color variables
 
-daisyUI 4 uses [the new OKLCH color system](https://oklch.com/) under the hood. That means all color CSS variables (like `--p`, `--s`, etc) now have OKLCH values instead of HSL values.  
+daisyUI 4 uses [the new OKLCH color system](https://oklch.com/) under the hood. That means all color CSS variables (like `--p`, `--s`, etc) now have lch values instead of HSL values.  
 ( [Read more about OKLCH](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl) )
 
 - If you use daisyUI colors with Tailwind CSS class names (like `bg-primary`) you don't have to do anything.
-- If you use the CSS variables directly in your project (like `.myclass{ color: hsl(var(--p)) }` ) you need to use them with oklch function (like `.myclass{ color: oklch(var(--p)) }`) now.
+- If you use the CSS variables directly in your project (like `.myclass{ color: hsl(var(--p)) }` ) you need to use them with lch function (like `.myclass{ color: lch(var(--p)) }`) now.
 
 Here's the primary color of light theme in daisyUI 3 and 4:
 
@@ -48,14 +48,14 @@ Here's the primary color of light theme in daisyUI 3 and 4:
 <div>
 
 ```css
-/* the values are OKLCH */
+/* the values are lch */
 --p: 0.4912 0.3096 275.75;
 ```
 
 </div>
 </div>
 
-So for using daisyUI color CSS variables directly inside your porject, change the color funtions from `hsl()` to `oklch()` like this:
+So for using daisyUI color CSS variables directly inside your porject, change the color funtions from `hsl()` to `lch()` like this:
 
 <div class="grid sm:grid-cols-2 gap-x-4">
 <div class="text-center text-xs text-base-content/50 font-bold">Before</div>
@@ -71,8 +71,8 @@ color: hsl(var(--p));
 <div>
 
 ```css
-/* Using oklch() function */
-color: oklch(var(--p));
+/* Using lch() function */
+color: lch(var(--p));
 ```
 
 </div>
@@ -84,7 +84,7 @@ All `*-focus` colors like `primary-focus` color in daisyUI 3 did was using the s
 Now thanks to the new `color-mix()` CSS function we do the same dynamically and it gives us more control on the the colors. For example take a look at this amazing class name. It mixes primary color with black to make it 7% darker:
 
 ```css
-bg-[color-mix(in_oklab,oklch(var(--p)),black_7%)]
+bg-[color-mix(in_oklab,lch(var(--p)),black_7%)]
                    │              │       │
                    │              │       │
                    │              │       │
@@ -113,10 +113,10 @@ class="bg-neutral-focus"
 <div>
 
 ```jsx
-class="bg-[color-mix(in_oklab,oklch(var(--p)),black_7%)]"
-class="bg-[color-mix(in_oklab,oklch(var(--s)),black_7%)]"
-class="bg-[color-mix(in_oklab,oklch(var(--a)),black_7%)]"
-class="bg-[color-mix(in_oklab,oklch(var(--n)),black_7%)]"
+class="bg-[color-mix(in_oklab,lch(var(--p)),black_7%)]"
+class="bg-[color-mix(in_oklab,lch(var(--s)),black_7%)]"
+class="bg-[color-mix(in_oklab,lch(var(--a)),black_7%)]"
+class="bg-[color-mix(in_oklab,lch(var(--n)),black_7%)]"
 ```
 
 </div>

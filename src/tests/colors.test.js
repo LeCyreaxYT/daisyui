@@ -4,7 +4,7 @@ import { forgroundPairs } from "./data"
 
 // foreach array
 for (const pair of forgroundPairs) {
-  test(`foreground color for \t${pair.input} \tis oklch(${pair.result})`, () => {
+  test(`foreground color for \t${pair.input} \tis lch(${pair.result})`, () => {
     expect(colorFunctions.generateForegroundColorFrom(pair.input, pair.percent)).toBe(pair.result)
   })
 }

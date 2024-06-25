@@ -12,13 +12,13 @@ for (const themeKey in themes) {
     test(`${trimThemeName(themeKey)}: \t${variableName[0].substring(2)}/${variableName[1].substring(
       2
     )} \tcontrast = ${wcagContrast(
-      `oklch(${colorFunctions.convertColorFormat(themes[themeKey], "oklch")[variableName[0]]})`,
-      `oklch(${colorFunctions.convertColorFormat(themes[themeKey], "oklch")[variableName[1]]})`
+      `lch(${colorFunctions.convertColorFormat(themes[themeKey], "lch")[variableName[0]]})`,
+      `lch(${colorFunctions.convertColorFormat(themes[themeKey], "lch")[variableName[1]]})`
     ).toFixed(2)}:1`, () => {
       expect(
         wcagContrast(
-          `oklch(${colorFunctions.convertColorFormat(themes[themeKey], "oklch")[variableName[0]]})`,
-          `oklch(${colorFunctions.convertColorFormat(themes[themeKey], "oklch")[variableName[1]]})`
+          `lch(${colorFunctions.convertColorFormat(themes[themeKey], "lch")[variableName[0]]})`,
+          `lch(${colorFunctions.convertColorFormat(themes[themeKey], "lch")[variableName[1]]})`
         )
       ).toBeGreaterThan(ContrastRatioErrorThreshold)
     })
